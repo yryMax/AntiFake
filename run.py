@@ -15,10 +15,8 @@ import torchaudio
 import csv
 import random
 import pygame
-this_file_dir = Path(__file__).resolve().parent
-sys.path.append(str(this_file_dir))
-sys.path.insert(0, str(this_file_dir / "rtvc"))
-sys.path.insert(0, str(this_file_dir / "TTS"))
+sys.path.insert(0, "./rtvc")
+sys.path.insert(0, "./TTS")
 
 from encoder import inference as encoder
 from encoder import audio

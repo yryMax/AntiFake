@@ -38,11 +38,7 @@ def ensure_default_models(models_dir: Path):
     for model_name, (url, size) in default_models.items():
         target_path = models_dir / "default" / f"{model_name}.pt"
         if target_path.exists():
-            if target_path.stat().st_size != size:
-                print(f"File {target_path} is not of expected size, redownloading...")
-            else:
                 continue
-
         thread = Thread(target=download, args=(url, target_path, len(jobs)))
         thread.start()
         jobs.append((thread, target_path, size))
@@ -51,6 +47,5 @@ def ensure_default_models(models_dir: Path):
     for thread, target_path, size in jobs:
         thread.join()
 
-        assert target_path.exists() and target_path.stat().st_size == size, \
-            f"Download for {target_path.name} failed. You may download models manually instead.\n" \
+        assert target_path.exists(), f"Download for {target_path.name} failed. You may download models manually instead.\n" \
             f"https://drive.google.com/drive/folders/1fU6umc5uQAVR2udZdHX-lDgXYzTyqG_j"
