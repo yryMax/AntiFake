@@ -444,6 +444,7 @@ if __name__ == "__main__":
     target_speakers_selected = target_speakers_files[:NUM_RANDOM_TARGET_SPEAKER]
     
     # User listens to source and targets, assign score to each
+    """
     pygame.mixer.init()
     user_scores = []
     for path in target_speakers_selected:
@@ -470,6 +471,7 @@ if __name__ == "__main__":
                 break
             else:
                 print("Invalid input. Please enter a score between 1-5.\n")
+    """
 
     # Compute source and target embedding differences, also load each encoder model to the global variables
     print("Computing target speakers embedding differences...")
@@ -504,10 +506,10 @@ if __name__ == "__main__":
     
     # Select target speaker that has the largest difference from the source with the analytic hierarchy process
     # Normalize the scores from list1 and list2
-    user_scores_weights = np.array(user_scores) / np.sum(user_scores)
+   # user_scores_weights = np.array(user_scores) / np.sum(user_scores)
     ltotal_embedding_diffs_weights = np.array(total_embedding_diffs) / np.sum(total_embedding_diffs)
     # Aggregate the weights
-    overall_weights = 0.5 * user_scores_weights + 0.5 * ltotal_embedding_diffs_weights
+    overall_weights = ltotal_embedding_diffs_weights
     # Find the item with the highest score
     selected_target_speaker_path = target_speakers_selected[np.argmax(overall_weights)]
     
