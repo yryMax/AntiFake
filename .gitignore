@@ -1,2 +1,6 @@
 *.pth
 *.pt
+TTS
+rtvc
+tortoise
+adaptive_voice_conversion
